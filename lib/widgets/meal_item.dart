@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:meals_app/widgets/meal_item_trait.dart';
+import 'package:meals_app/widgets/meal_item_details.dart';
 
 class MealItem extends StatelessWidget {
 
   const MealItem({super.key, required this.meal});
 
   final Meal meal;
+
+  String get complexityText {
+    return meal.complexity.name[0].toUpperCase() + meal.complexity.name.substring(1);
+  }
+
+  String get affordabilityText {
+    return meal.affordability.name[0].toUpperCase() + meal.affordability.name.substring(1);
+  }
+
+  void selectMeal(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MealItemDetails(steps: meal.steps, ingredients: meal.ingredients, image: meal.imageUrl, onToggleFavorite: (){},),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -16,7 +35,7 @@ class MealItem extends StatelessWidget {
       elevation: 2,
 
       child: InkWell(
-        onTap: () {},
+        onTap: () => selectMeal(context),
         child: Stack(
           children: [
 
@@ -51,7 +70,16 @@ class MealItem extends StatelessWidget {
 
                     SizedBox(height: 12,),
 
-                    Row()
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        MealItemTrait(icon: Icons.schedule, label: '${meal.duration} min',),
+                        const SizedBox(width: 12,),
+                        MealItemTrait(icon: Icons.access_time, label: complexityText),
+                        const SizedBox(width: 12,),
+                        MealItemTrait(icon: Icons.attach_money, label: affordabilityText), 
+                      ],
+                    )
                   ],
                 ),
               ),

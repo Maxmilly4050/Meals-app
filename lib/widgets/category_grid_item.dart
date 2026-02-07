@@ -20,7 +20,7 @@ class CategoryGridItem extends StatelessWidget {
         onSelectCategory();
       },
       splashColor: Theme.of(context).colorScheme.primary,
-      borderRadius: BorderRadius.circular(15),
+      // borderRadius: BorderRadius.circular(30),
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class CategoryGridItem extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          // borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15),
         ),
         child: Text(
             category.title,
