@@ -15,10 +15,11 @@ class _TabsScreenState extends State<TabsScreen> {
   final List<Meal> _favoriteMeals = [];
 
   void _toggleMealFavoriteStatus(Meal meal) {
-    final isExisting = _favoriteMeals.contains(meal);
+    final isFavorited = _favoriteMeals.any((favMeal) => favMeal.id == meal.id);
+    
     setState(() {
-      if (isExisting) {
-        _favoriteMeals.remove(meal);
+      if (isFavorited) {
+        _favoriteMeals.removeWhere((favMeal) => favMeal.id == meal.id);
       } else {
         _favoriteMeals.add(meal);
       }

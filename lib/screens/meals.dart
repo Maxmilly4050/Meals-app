@@ -39,7 +39,7 @@ class MealsScreen extends StatelessWidget {
         content = ListView.builder(
           itemCount: meals.length,
           itemBuilder: (ctx, index) {
-            return MealItem(meal: meals[index]);
+            return MealItem(meal: meals[index], onToggleFavorite: onToggleFavorite);
           },
         );
       }
