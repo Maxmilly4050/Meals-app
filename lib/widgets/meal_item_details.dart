@@ -28,9 +28,9 @@ class MealItemDetails extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.network(image, height: 250, width: double.infinity, fit: BoxFit.cover),
+          Hero(
+            tag: image,
+              child: Image.network(image, height: 250, width: double.infinity, fit: BoxFit.cover),
           ),
           const SizedBox(height: 12,),
           Row(
